@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOLIX | Checkout</title><meta name="robots" content="noindex">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&family=Noto+Naskh+Arabic:wght@600;700&family=Readex+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css?v=4">
+</head>
+<body>
+  <header class="hdr"><div class="wrap"><a class="brand" href="index.html">FOLIX</a>
+    <div class="tools"><button class="pill" id="lang" type="button">EN</button></div></div></header>
+  <main class="wrap co">
+    <section>
+      <h1 style="font-size:2rem;margin-bottom:1.5rem" data-i18n="co_h">إتمام الطلب</h1>
+      <div id="form-err" class="alert" role="alert" hidden></div>
+      <form id="f" novalidate>
+        <div class="fld"><label for="name" data-i18n="f_name"></label><input id="name" autocomplete="name" maxlength="100"><span class="err" id="e-name"></span></div>
+        <div class="fld"><label for="phone" data-i18n="f_phone"></label><input id="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="01XXXXXXXXX" maxlength="16"><span class="err" id="e-phone"></span></div>
+        <div class="fld"><label for="gov" data-i18n="f_gov"></label><select id="gov"></select><span class="err" id="e-gov"></span></div>
+        <div class="fld"><label for="city" data-i18n="f_city"></label><input id="city" autocomplete="address-level2" maxlength="100"><span class="err" id="e-city"></span></div>
+        <div class="fld"><label for="addr" data-i18n="f_addr"></label><textarea id="addr" autocomplete="street-address" maxlength="300"></textarea><span class="err" id="e-addr"></span></div>
+        <div class="fld"><label for="notes" data-i18n="f_notes"></label><textarea id="notes" maxlength="500"></textarea></div>
+        <button class="btn" id="go" type="submit" style="width:100%" data-i18n="place"></button>
+      </form>
+    </section>
+    <aside id="summary" aria-live="polite"></aside>
+  </main>
+  <script type="module" src="assets/js/checkout.js?v=4"></script>
+</body>
+</html>

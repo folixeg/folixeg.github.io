@@ -1,0 +1,18 @@
+:root{--ink:#0b0a09;--gold:#c8a25e;--bone:#f6f3ee;--line:#ddd6c8}
+*{box-sizing:border-box;margin:0}body{font:15px/1.6 "Readex Pro",system-ui,sans-serif;background:var(--bone);color:var(--ink)}
+.top{background:var(--ink);color:#fff;display:flex;gap:1rem;align-items:center;padding:.6rem 1rem;flex-wrap:wrap;position:sticky;top:0;z-index:5}
+.top b{font:700 1.3rem "Bodoni Moda",serif;margin-inline-end:1rem}.top nav{display:flex;gap:.25rem;flex-wrap:wrap;flex:1}
+.top a{color:#cfc7b8;text-decoration:none;padding:.4rem .8rem;border-radius:4px}.top a.on{background:var(--gold);color:var(--ink)}
+main{padding:1.25rem;max-width:1100px;margin:auto}h3{margin:1.5rem 0 .5rem}
+.btn,.top button{min-height:40px;padding:0 1rem;border:0;border-radius:4px;background:var(--ink);color:#fff;cursor:pointer;font:inherit}.top button{background:#2a251d}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem}
+.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:1rem;display:grid}.card b{font-size:1.7rem}
+.ed{background:#fff;border:1px solid var(--line);border-radius:6px;padding:1rem;margin-bottom:.75rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.6rem;align-items:end}
+.ed label{display:grid;gap:.2rem;font-size:.8rem;text-transform:capitalize}.ed input,.ed textarea,select,.bar2 input{padding:.5rem;border:1px solid var(--line);border-radius:4px;font:inherit;width:100%}
+.ed input[type=checkbox]{width:22px;height:22px}.bar2{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}.bar2>*{flex:1;min-width:150px}
+.tb{width:100%;border-collapse:collapse;background:#fff}.tb th,.tb td{padding:.6rem;border-bottom:1px solid var(--line);text-align:start;font-size:.9rem}.tb tr[onclick],.tb tbody tr{cursor:pointer}.tb tbody tr:hover{background:#faf6ee}
+.pane{background:#fff;border:1px solid var(--line);border-radius:6px;padding:1rem;margin-top:1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.75rem}.im{background:#fff;border:1px solid var(--line);border-radius:6px;padding:.4rem;display:grid;gap:.3rem;cursor:grab}
+.im img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px}.im.pr{outline:2px solid var(--gold)}.im button{font-size:.75rem;padding:.2rem;cursor:pointer}
+#toast{position:fixed;inset-inline-end:1rem;bottom:1rem;background:var(--ink);color:var(--gold);padding:1rem;border-radius:6px;max-width:320px;display:none;z-index:9}
+.login{max-width:360px;margin:12vh auto;background:#fff;padding:2rem;border-radius:8px;display:grid;gap:1rem}.login input{padding:.7rem;border:1px solid var(--line);border-radius:4px;font:inherit}

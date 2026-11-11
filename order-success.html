@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOLIX</title><meta name="robots" content="noindex">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&family=Noto+Naskh+Arabic:wght@600;700&family=Readex+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css?v=4">
+</head>
+<body>
+  <header class="hdr"><div class="wrap"><a class="brand" href="index.html">FOLIX</a><div class="tools"><button class="pill" id="lang" type="button">EN</button></div></div></header>
+  <main class="wrap" style="text-align:center;padding-block:6rem">
+    <h1 data-i18n="ok_h"></h1>
+    <p class="lead" style="margin:1.5rem auto 0"><span data-i18n="ok_no"></span>: <b id="no" dir="ltr"></b></p>
+    <p class="lead" style="margin:.5rem auto 2rem" data-i18n="ok_msg"></p>
+    <p id="cmsg" class="lead" role="status" style="margin:0 auto 1rem"></p>
+    <p class="lead" style="margin:0 auto 1.5rem"><span data-i18n="eta"></span></p>
+    <p class="lead" style="margin:0 auto 1rem" data-i18n="cancel_note"></p>
+    <p style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap"><button class="btn" id="cancel" type="button" hidden data-i18n="cancel_btn"></button><a class="btn ghost" id="wa" target="_blank" rel="noopener" data-i18n="wa_cancel"></a><a class="btn" href="index.html" data-i18n="back_shop"></a></p>
+  </main>
+  <script type="module">
+    import { getLang, setLang, t } from "./assets/js/i18n.js?v=4"; import "./assets/js/i18n-extra.js?v=4";
+    import { supabase, isConfigured } from "./config/supabase.js?v=4";
+    setLang(getLang()); document.getElementById("lang").onclick = () => setLang(getLang() === "ar" ? "en" : "ar");
+    const no = new URLSearchParams(location.search).get("o") || "";
+    document.getElementById("no").textContent = no;
+    // WhatsApp number comes from store settings; the fallback is used if it can't be loaded.
+    let n = "01275971995";
+    if (isConfigured) { try { const { data } = await supabase.from("store_settings").select("whatsapp_number").eq("id", 1).maybeSingle(); if (data?.whatsapp_number) n = data.whatsapp_number; } catch {} }
+    n = n.replace(/\D/g, ""); if (n.startsWith("0")) n = "20" + n.slice(1);
+    const setWa = () => document.getElementById("wa").href = `https://wa.me/${n}?text=` + encodeURIComponent((getLang() === "ar" ? "عايز ألغي أو أعدّل الطلب رقم " : "I'd like to cancel or change order ") + no);
+    setWa(); addEventListener("langchange", setWa);
+    // A little gold confetti burst (skipped for reduced motion).
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) for (let i = 0; i < 36; i++) { const c = document.createElement("i"); c.className = "cf";
+      c.style.cssText = `left:${Math.random() * 100}%;animation-delay:${Math.random() * .8}s;background:${["#c8a25e","#e8cf98","#7b4126"][i % 3]}`; document.body.append(c); setTimeout(() => c.remove(), 4000); }
+    // Self-cancel: needs the secret from the URL fragment or from this browser's last order.
+    let tok = new URLSearchParams(location.hash.slice(1)).get("k");
+    if (!tok) { try { const s = JSON.parse(localStorage.getItem("folix_last_order")); if (s?.o === no) tok = s.k; } catch {} }
+    const cb = document.getElementById("cancel"), cm = document.getElementById("cmsg");
+    if (tok && isConfigured) { cb.hidden = false; cb.onclick = async () => {
+      if (!confirm(t("cancel_confirm"))) return; cb.disabled = true;
+      const { error } = await supabase.rpc("cancel_my_order", { p_order_number: no, p_token: tok });
+      if (error) { cb.disabled = false; cm.textContent = error.message.startsWith("too_late") ? t("too_late") : t("cancel_err"); }
+      else { cm.textContent = t("cancelled_ok"); cb.hidden = true; try { localStorage.removeItem("folix_last_order"); } catch {} } }; }
+  </script>
+</body>
+</html>
