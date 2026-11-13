@@ -1,5 +1,5 @@
 /* Store / checkout strings (merged into the main dictionary). */
-import { T } from "./i18n.js?v=4";
+import { T } from "./i18n.js?v=6";
 Object.assign(T.ar, {
   cart: "السلة", color: "اللون", qty: "الكمية", stock: "المتاح", out: "نفد المخزون",
   add: "أضف إلى السلة", order_now: "اطلب الآن", added: "تمت الإضافة للسلة ✓",
@@ -41,3 +41,21 @@ Object.assign(T.en, { promo_black: "Black Friday", promo_white: "White Friday", 
 
 Object.assign(T.ar, { ship_fee: "الشحن", free_over: "شحن مجاني للطلبات فوق", ship_free: "شحن مجاني" });
 Object.assign(T.en, { ship_fee: "Shipping", free_over: "free shipping over", ship_free: "Free shipping" });
+
+/* Orders are confirmed by phone call from the brand team (no WhatsApp on the site). */
+Object.assign(T.ar, {
+  confirm_h: "تأكيد الطلب", confirm_note: "بعد ما تطلب، فريقنا هيتصل بيك على رقمك لتأكيد الطلب وموعد التوصيل. اتأكد إن الرقم شغّال وتقدر ترد عليه.",
+  call_note: "هنتصل بك لتأكيد الطلب قبل الشحن.", phone_hint: "اكتب رقم شغّال، هنتصل بيك عليه لتأكيد الطلب.",
+  cancel_note: "فريقنا هيتصل بك لتأكيد الطلب. ولو غيّرت رأيك تقدر تلغيه من هنا قبل الشحن.",
+  too_late: "الطلب اتجهّز أو اتشحن ومينفعش يتلغى من هنا. ممكن تبلّغ فريقنا لما يتصل بك.",
+  cancel_err: "تعذّر الإلغاء. جرّب تاني، أو ردّ على مكالمة فريقنا وهنلغيه لك.",
+  a5: "أكيد. تقدر تلغيه من صفحة تأكيد الطلب قبل ما يتشحن، أو تبلّغ فريقنا لما يتصل بك لتأكيد الطلب."
+});
+Object.assign(T.en, {
+  confirm_h: "Order confirmation", confirm_note: "After you order, our team will call you to confirm the order and delivery time. Please make sure your number works and you can answer it.",
+  call_note: "We'll call you to confirm the order before shipping.", phone_hint: "Enter a working number. We'll call you on it to confirm your order.",
+  cancel_note: "Our team will call you to confirm the order. If you change your mind, you can cancel it here before it ships.",
+  too_late: "The order is already being prepared or shipped and can't be cancelled here. Tell our team when they call you.",
+  cancel_err: "Couldn't cancel. Try again, or tell our team when they call you and they'll cancel it.",
+  a5: "Yes. You can cancel it from the order confirmation page before it ships, or tell our team when they call you to confirm."
+});

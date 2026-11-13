@@ -1,7 +1,8 @@
-import { supabase, isConfigured } from "../../config/supabase.js?v=4";
-import { getLang, setLang, t } from "./i18n.js?v=4";
-import "./i18n-extra.js?v=4";
-import { getCart, saveCart, money, h } from "./cart.js?v=4";
+import { supabase, isConfigured } from "../../config/supabase.js?v=6";
+import { getLang, setLang, t } from "./i18n.js?v=6";
+import "./i18n-extra.js?v=6";
+import { getCart, saveCart, money, h } from "./cart.js?v=6";
+import "./track.js?v=6";
 
 const GOV = ["القاهرة","الجيزة","الإسكندرية","الدقهلية","البحر الأحمر","البحيرة","الفيوم","الغربية","الإسماعيلية","المنوفية","المنيا","القليوبية","الوادي الجديد","السويس","أسوان","أسيوط","بني سويف","بورسعيد","دمياط","الشرقية","جنوب سيناء","كفر الشيخ","مطروح","الأقصر","قنا","شمال سيناء","سوهاج"];
 const $ = id => document.getElementById(id);

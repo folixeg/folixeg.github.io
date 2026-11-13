@@ -1,13 +1,8 @@
 /* Storefront: everything (price, stock, images, contact) comes from Supabase. DB text is inserted as text, never HTML. */
-import { supabase, isConfigured, SUPABASE_URL } from "../../config/supabase.js?v=4";
-import { t } from "./i18n.js?v=4";
-import { addToCart, money, h } from "./cart.js?v=4";
-import { initPromo } from "./promo.js?v=4";
-
-/* WhatsApp: accepts 01xxxxxxxxx or 201xxxxxxxxx. The number saved in store_settings overrides the fallback below. */
-const waLink = raw => { let n = (raw || "").replace(/\D/g, ""); if (n.startsWith("0")) n = "20" + n.slice(1); return n ? "https://wa.me/" + n + "?text=" + encodeURIComponent("مرحبًا، عندي سؤال عن المنتج") : "#"; };
-const setWa = raw => document.querySelectorAll(".js-wa").forEach(a => { a.href = waLink(raw); a.target = "_blank"; a.rel = "noopener"; });
-setWa("01275971995");   // fallback until Supabase settings load
+import { supabase, isConfigured, SUPABASE_URL } from "../../config/supabase.js?v=6";
+import { t } from "./i18n.js?v=6";
+import { addToCart, money, h } from "./cart.js?v=6";
+import { initPromo } from "./promo.js?v=6";
 
 const info = document.getElementById("pinfo"), stage = document.getElementById("stage");
 let S, P, V = [], IMG = [], cur = 0, qty = 1;
@@ -69,7 +64,6 @@ async function init() {
       supabase.from("products").select("*").eq("is_active", true).order("created_at").limit(1).maybeSingle()]);
     S = st.data; P = pr.data; initPromo(S);
     if (S?.announcement_text) document.querySelector(".bar").textContent = S.announcement_text;
-    if (S?.whatsapp_number) setWa(S.whatsapp_number);
     const gal = await supabase.from("product_images").select("*").in("image_type", ["before_after", "gallery"]).order("display_order");
     const root = document.querySelector("[data-gallery-root]");
     if (gal.data?.length) { root.className = "gal"; root.removeAttribute("data-i18n"); root.replaceChildren(...gal.data.map(g => h("img", { src: g.image_url, alt: "", loading: "lazy" }))); }

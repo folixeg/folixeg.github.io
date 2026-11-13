@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>FOLIX Admin</title><link rel="stylesheet" href="admin.css?v=4"></head>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>FOLIX Admin</title><link rel="stylesheet" href="admin.css?v=6"></head>
 <body><form class="login" id="f"><h2>FOLIX Admin</h2><input id="e" type="email" placeholder="Email" autocomplete="username" required><input id="p" type="password" placeholder="Password" autocomplete="current-password" required><button class="btn">Login</button><p id="m" style="color:#b3261e"></p></form>
 <script type="module">
-import {supabase} from "../config/supabase.js?v=4";
+import {supabase} from "../config/supabase.js?v=6";
 const m=document.getElementById("m");
 if(new URLSearchParams(location.search).get("denied")) m.textContent="Not authorized.";
 document.getElementById("f").onsubmit=async ev=>{ev.preventDefault();m.textContent="";

@@ -1,5 +1,5 @@
 /* Cart: stores ONLY variant ids + quantities. Prices/stock are always re-read from Supabase. */
-import { getLang } from "./i18n.js?v=4";
+import { getLang } from "./i18n.js?v=6";
 const K = "folix_cart";
 export const getCart = () => { try { return JSON.parse(localStorage.getItem(K)) || []; } catch { return []; } };
 export const saveCart = c => { try { localStorage.setItem(K, JSON.stringify(c)); } catch {} dispatchEvent(new Event("cartchange")); };

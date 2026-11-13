@@ -1,5 +1,5 @@
-import { supabase, MEDIA_BUCKET } from "../config/supabase.js?v=4";
-import { h, money } from "../assets/js/cart.js?v=4";
+import { supabase, MEDIA_BUCKET } from "../config/supabase.js?v=6";
+import { h, money } from "../assets/js/cart.js?v=6";
 
 /* ---------- auth guard (authorization = is_admin() in the DB; RLS enforces it again on every query) ---------- */
 const { data: { session } } = await supabase.auth.getSession();

@@ -1,6 +1,6 @@
 // Run: node tests/check.mjs  — checks translations and the phone rule.
 import { readFileSync, readdirSync } from "fs";
-import { T } from "../assets/js/i18n.js?v=4"; import "../assets/js/i18n-extra.js?v=4";
+import { T } from "../assets/js/i18n.js?v=6"; import "../assets/js/i18n-extra.js?v=6";
 const bad = [];
 for (const f of ["index.html", "checkout.html", "order-success.html", "admin/index.html"])
   for (const m of readFileSync(new URL("../" + f, import.meta.url), "utf8").matchAll(/data-i18n(?:-ph)?="(\w+)"/g))

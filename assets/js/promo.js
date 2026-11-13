@@ -1,7 +1,7 @@
 /* Friday countdown. Fridays: live countdown to the end of the day (Cairo time). Other days: days until Friday.
    Shown only when the owner switches it on in Settings. */
-import { t } from "./i18n.js?v=4";
-import { h } from "./cart.js?v=4";
+import { t } from "./i18n.js?v=6";
+import { h } from "./cart.js?v=6";
 
 let timer, cfg;
 const cairo = () => new Date(new Date().toLocaleString("en-US", { timeZone: "Africa/Cairo" }));

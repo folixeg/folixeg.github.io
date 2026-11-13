@@ -1,7 +1,8 @@
-import { getLang, setLang, t } from "./i18n.js?v=4";
-import "./i18n-extra.js?v=4";
-import { cartCount } from "./cart.js?v=4";
-import "./store.js?v=4";
+import { getLang, setLang, t } from "./i18n.js?v=6";
+import "./i18n-extra.js?v=6";
+import { cartCount } from "./cart.js?v=6";
+import "./store.js?v=6";
+import "./track.js?v=6";
 
 setLang(getLang());
 document.getElementById("lang").addEventListener("click", () => setLang(getLang() === "ar" ? "en" : "ar"));
