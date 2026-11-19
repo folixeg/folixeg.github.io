@@ -5,6 +5,24 @@
   <title>FOLIX</title><meta name="robots" content="noindex">
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&family=Noto+Naskh+Arabic:wght@600;700&family=Readex+Pro:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css?v=6">
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1332290942292110');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1332290942292110&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
   <header class="hdr"><div class="wrap"><a class="brand" href="index.html">FOLIX</a><div class="tools"><button class="pill" id="lang" type="button">EN</button></div></div></header>
@@ -24,6 +42,14 @@
     setLang(getLang()); document.getElementById("lang").onclick = () => setLang(getLang() === "ar" ? "en" : "ar");
     const no = new URLSearchParams(location.search).get("o") || "";
     document.getElementById("no").textContent = no;
+    // Meta Pixel: report the Purchase once, using the order value saved by checkout.js.
+    try {
+      const p = JSON.parse(sessionStorage.getItem("folix_purchase"));
+      if (p && p.id === no && typeof fbq === "function") {
+        fbq("track", "Purchase", { value: Number(p.value) || 0, currency: p.currency || "EGP", content_ids: p.ids || [], content_type: "product", num_items: p.num || 1 }, { eventID: String(p.id) });
+        sessionStorage.removeItem("folix_purchase");
+      }
+    } catch {}
     // A little gold confetti burst (skipped for reduced motion).
     if (!matchMedia("(prefers-reduced-motion: reduce)").matches) for (let i = 0; i < 36; i++) { const c = document.createElement("i"); c.className = "cf";
       c.style.cssText = `left:${Math.random() * 100}%;animation-delay:${Math.random() * .8}s;background:${["#c8a25e","#e8cf98","#7b4126"][i % 3]}`; document.body.append(c); setTimeout(() => c.remove(), 4000); }
