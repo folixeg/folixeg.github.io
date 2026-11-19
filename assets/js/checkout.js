@@ -76,6 +76,12 @@ $("f").addEventListener("submit", async e => {
     if (code === "out_of_stock" || code === "product_unavailable") { sessionStorage.removeItem("folix_key"); await load(); }
     btn.disabled = false; btn.textContent = t("place"); return;
   }
+  // Meta Pixel: remember the order value so order-success.html can report the Purchase event.
+  try {
+    const sub = lines.reduce((n, l) => n + l.v.products.price * l.qty, 0);
+    const th = Number(S?.free_shipping_threshold || 0), ship = th > 0 && sub >= th ? 0 : Number(S?.shipping_fee || 0);
+    sessionStorage.setItem("folix_purchase", JSON.stringify({ id: data.order_number, value: sub + ship, currency: S?.currency || "EGP", ids: lines.map(l => l.v.products.id), num: lines.reduce((n, l) => n + l.qty, 0) }));
+  } catch {}
   saveCart([]); sessionStorage.removeItem("folix_key");
   // The secret goes in the URL fragment (never sent to servers) and is kept in this browser so the customer can cancel later.
   try { localStorage.setItem("folix_last_order", JSON.stringify({ o: data.order_number, k: data.cancel_token })); } catch {}
